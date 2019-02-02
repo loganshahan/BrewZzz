@@ -1,0 +1,152 @@
+body {
+    background: #d3d3d3;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+p {
+    margin: 0 !important;
+    font-size: 0.9em !important;
+}
+
+h1 {
+    margin: 0 10px;
+}
+
+h5 {
+    padding: 0 5px !important;
+}
+
+.hide {
+    opacity: 0;
+    height: 0;
+    transition: opacity 0.2s ease-in-out 0.1s;
+    overflow: hidden;
+
+}
+
+.row {
+    margin-bottom: 5px !important;
+}
+
+.show {
+    opacity: 1;
+    height: auto;
+    transition: opacity 0.2s ease-in-out 0.1s;
+}
+
+.form-control:focus,
+.custom-select:focus {
+    color: #495057;
+    background-color: #fff;
+    border: none !important;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+input {
+    caret-color: indigo !important;
+}
+
+#information {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* padding: 0 15px 0 15px; */
+}
+
+#information .card {
+    flex-grow: 1;
+    min-width: 46%;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 1%;
+    
+}
+
+.call {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 15px;
+}
+
+.search {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 15px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.btn {
+    width: 50% !important;
+}
+
+ul {
+    margin-bottom: 0 !important;
+}
+
+.card .card-action {
+    padding: 5px !important;
+    border: none !important;
+}
+
+label {
+    color: indigo !important;
+}
+.pagination li a {
+    padding: 0 !important;
+}
+
+.input-field input[type=text] + label, .materialize-textarea:focus:not([readonly]) + label {
+    color: indigo !important;
+}
+.input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+color: indigo !important;
+}
+.input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+border-bottom: 1px solid indigo !important;
+box-shadow: 0 1px 0 0 indigo !important;
+}
+.input-field input[type=email]:focus, .materialize-textarea:focus:not([readonly]) {
+border-bottom: 1px solid indigo !important;
+box-shadow: 0 1px 0 0 indigo !important;
+}
+.input-field input[type=password]:focus, .materialize-textarea:focus:not([readonly]) {
+border-bottom: 1px solid indigo !important;
+box-shadow: 0 1px 0 0 indigo !important;
+}
+/*WEATHER*/
+
+.map{
+    height:400px;
+    width:100%;
+  }
+
+.weather {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*MAPS*/
+
+.container {
+    position: relative;
+}
+.abs {
+    position: absolute;
+    top: 0%;
+    left: 2%;
+    z-index: 2;
+    border: 2px solid black;
+    padding: 15px;
+    background-color: rgba(33,33,33,0.8);
+    color:white;
+  
+}
