@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         if(breweries.length == 0) {
             selection.classList.add('disabled');
-            document.querySelector("#information").textContent = 'No bars found'
+            document.querySelector("#information").textContent = 'No bars found!'
         } else {
             selection.classList.remove('disabled');  
         }
@@ -105,10 +105,11 @@ window.addEventListener('DOMContentLoaded', () => {
     
           </div>
         </div>
+        
 
         <!-- Website modal -->
-        <div id="website-${id}" class="modal" style="height:90%; width: 90%;">
-          <div class="modal-content" style="height:90%; width: 90%; margin: 0 auto;">
+        <div id="website-${id}" class="modal" style="height:90%; width: 90%; max-height: 85% !important;">
+          <div class="modal-content" style="height:90%; width: 100%; margin: 0 auto;">
             <h4> ${name} - Website</h4>
     
             <iframe width="100%" height="100%" frameborder="0" allowtransparency="true" src="${website}"></iframe>
@@ -116,6 +117,10 @@ window.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         `;
+
+        if(website === '') {
+            document.getElementById(`website-${id}`).textContent = 'No Website found!';
+        };
 
     };
       // setup materialize components
@@ -141,6 +146,7 @@ window.addEventListener('DOMContentLoaded', () => {
         submitHandle(name_input.value);
         fetch_weather(single_state);
         selection.classList.remove('disabled');
+        name_input.value = '';
 
     };
 

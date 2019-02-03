@@ -28,7 +28,7 @@ h5 {
 }
 
 .row {
-    margin-bottom: 5px !important;
+    margin-bottom: 10px !important;
 }
 
 .show {
@@ -59,7 +59,7 @@ input {
 
 #information .card {
     flex-grow: 1;
-    min-width: 46%;
+    min-width: 98%;
     max-width: 100%;
     overflow: hidden;
     margin: 1%;
