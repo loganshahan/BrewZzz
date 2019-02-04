@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
     for(let i in breweries) {
         let json = breweries[i];
     
-            console.log(json)
+            // console.log(json)
     
            let info =  document.querySelector("#information");
            let id = json.id;
@@ -88,7 +88,6 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
            `;
 
-    foursquare(city,lon,lat, id)
 
         let custom_modals = document.getElementById(`${id}`);
 
@@ -121,9 +120,14 @@ window.addEventListener('DOMContentLoaded', () => {
         `;
         
 
-        if(website === '') {
-            document.getElementById(`website-${id}`).textContent = 'No Website found!';
-        };
+    if(website === '') {
+        document.getElementById(`website-${id}`).textContent = 'No Website found!';
+    };
+
+    document.querySelector(`[data-target="bar-${id}"]`).addEventListener('click', () => {
+        foursquare(city,lon,lat, id);
+
+    });
 
     };
 

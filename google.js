@@ -1,6 +1,6 @@
 let foursquare = async (city,lat,lon,id) => {
 
-    let hotels_url = `https://api.foursquare.com/v2/venues/search?near=${city.toLowerCase()}&lat=${lat}&lng=${lon}&radius=10000&distance=5000&query=hotels&v=20150214&m=foursquare&limit=2&llAcc=1000&client_secret=QUT2FTOFXV2JMK0PX413XWOVTQRGS1041Y2LTFNP12J5TKAO&client_id=AJYZ2GDAGNCCTXMLSRULFN34AEMLMEWGBMRBJJDOAS2WTALY
+    let hotels_url = `https://api.foursquare.com/v2/venues/search?near=${city.toLowerCase()}&lat=${lat}&lng=${lon}&radius=10000&distance=5000&query=hotels&v=20150214&m=foursquare&limit=1&llAcc=1000&client_secret=QUT2FTOFXV2JMK0PX413XWOVTQRGS1041Y2LTFNP12J5TKAO&client_id=AJYZ2GDAGNCCTXMLSRULFN34AEMLMEWGBMRBJJDOAS2WTALY
     `;
     // console.log(hotels_url)
   
@@ -14,18 +14,16 @@ let foursquare = async (city,lat,lon,id) => {
       var hotel_name = hotels_json.name;
       let hotel_id = hotels_json.id;
 
-      // let photo_url = `https://api.foursquare.com/v2/venues/${hotel_id}/hours?client_secret=QUT2FTOFXV2JMK0PX413XWOVTQRGS1041Y2LTFNP12J5TKAO&client_id=AJYZ2GDAGNCCTXMLSRULFN34AEMLMEWGBMRBJJDOAS2WTALY&v=20180602`;
-
       let venue_url = `https://api.foursquare.com/v2/venues/${hotel_id}?client_secret=QUT2FTOFXV2JMK0PX413XWOVTQRGS1041Y2LTFNP12J5TKAO&client_id=AJYZ2GDAGNCCTXMLSRULFN34AEMLMEWGBMRBJJDOAS2WTALY&v=20180602&contact&url&rating`;
 
       let fetch_photo = await fetch(venue_url);
       let venue_json = await fetch_photo.json();
       let venues_obj = venue_json.response.venue;
-      // let photo_prefix = photo_hotel.prefix;
-      // let photo_suffix = photo_hotel.suffix;
-      // console.log(photo_prefix)
-      // console.log(photo_suffix)
-      console.log(venues_obj)
+
+      let phone_number = venues_obj.contact.phone;
+
+      console.log(venues_obj);
+      console.log(phone_number);
       
       
       hotel_container.innerHTML += `
@@ -51,8 +49,7 @@ let foursquare = async (city,lat,lon,id) => {
           </div>
         </div>
       </div>
-      
-      
+       
       `
 
     }  
