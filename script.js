@@ -5,21 +5,20 @@
 
 window.addEventListener('DOMContentLoaded', () => {
 
+    let city_input = document.querySelector('#full_city');
     let name_input = document.querySelector('#full_name');
     let pageNum = 1;
     let next = document.querySelector('.next');
     let prev = document.querySelector('.prev');
     let selection = document.querySelector('.selection');
     
-
-    
-    const fetch_brew = async (city) => {
+    const fetch_brew = async (city, name) => {
     
         let states = document.getElementById("states");
         let state = `&by_state=${states.options[states.selectedIndex].text}`;
+        
     
-        let url = `https://api.openbrewerydb.org/breweries?by_city=${city.toLowerCase().trim()}${state}&page=${pageNum}&per_page=1&sort=name`;    
-    
+        let url = `https://api.openbrewerydb.org/breweries?by_city=${city}${state}&page=${pageNum}&per_page=1&sort=name&by_name=${name}`;        
         // console.log(url);
         
         let res = await fetch(url);
@@ -28,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         if(breweries.length == 0) {
             selection.classList.add('disabled');
-            document.querySelector("#information").textContent = 'No bars found'
+            document.querySelector("#information").textContent = 'No breweries found!'
         } else {
             selection.classList.remove('disabled');  
         }
@@ -52,7 +51,8 @@ window.addEventListener('DOMContentLoaded', () => {
            let address = `${street}, ${city}, ${state}, ${postal}`;
            let lat = parseFloat(json.latitude);
            let lon = parseFloat(json.longitude);
-           
+
+           console.log(lat, lon)
     
            info.innerHTML += `
         <div class="card hoverable z-depth-1">
@@ -87,47 +87,67 @@ window.addEventListener('DOMContentLoaded', () => {
            
     </div>
            `;
-    
-           let custom_modals = document.getElementById(`${id}`);
+
+
+        let custom_modals = document.getElementById(`${id}`);
 
         custom_modals.innerHTML += `
-    <!-- Modal Trigger -->
-    <button class="modal-trigger indigo search" data-target="bar-${id}">
-        <i class="material-icons small indigo white-text"> gps_fixed </i>
-    </button>
-
-        <!-- Modal Structure -->
-        <div id="bar-${id}" class="modal">
-          <div class="modal-content">
-            <h4>${name}</h4>
+        
+        <!-- Modal Trigger -->
+        <button class="modal-trigger indigo search" data-target="bar-${id}">
+            <i class="material-icons small indigo white-text"> gps_fixed </i>
+        </button>
     
-            <p>info about hotels and stuff</p>
-    
-          </div>
-        </div>
+            <!-- Modal Structure -->
+            <div id="bar-${id}" class="modal" style="height:90%; width: 90%; max-height: 85% !important;">
+              <div class="modal-content" style="height:90%; width: 100%; margin: 0 auto;">
+                <h3>Hotels near ${name}</h3>
+                    <hr />
+                <div id="hotel-${id}" class="hotel-flex"></div>
+        
+              </div>
+            </div>
 
         <!-- Website modal -->
-        <div id="website-${id}" class="modal" style="height:90%; width: 90%;">
-          <div class="modal-content" style="height:90%; width: 90%; margin: 0 auto;">
+        <div id="website-${id}" class="modal" style="height:90%; width: 90%; max-height: 85% !important;">
+          <div class="modal-content" style="height:90%; width: 100%; margin: 0 auto;">
             <h4> ${name} - Website</h4>
-    
+                <hr />
             <iframe width="100%" height="100%" frameborder="0" allowtransparency="true" src="${website}"></iframe>
     
           </div>
         </div>
         `;
+        
+
+    if(website === '') {
+        document.getElementById(`website-${id}`).textContent = 'No Website found!';
+    };
+
+    document.querySelector(`[data-target="bar-${id}"]`).addEventListener('click', () => {
+        foursquare(city,lon,lat, id);
+
+    });
 
     };
+
+
       // setup materialize components
       let modals = document.querySelectorAll('.modal');
       M.Modal.init(modals);
 
     };
     
+    city_input.addEventListener('keyup', () => {
+
+        pageNum = 1;
+        submitHandle(city_input.value, name_input.value);
+
+    });
     name_input.addEventListener('keyup', () => {
 
         pageNum = 1;
-        submitHandle(name_input.value);
+        submitHandle(city_input.value, name_input.value);
 
     });
     
@@ -138,9 +158,10 @@ window.addEventListener('DOMContentLoaded', () => {
         let single_state = states.options[states.selectedIndex].text;
     
         pageNum = 1;
-        submitHandle(name_input.value);
+        submitHandle(city_input.value, name_input.value);
         fetch_weather(single_state);
         selection.classList.remove('disabled');
+        city_input.value = '';
 
     };
 
@@ -159,21 +180,21 @@ next.addEventListener('click', () => {
         selection.classList.add('disabled');
     } else {
         page_up();
-        submitHandle(name_input.value);
+        submitHandle(city_input.value, name_input.value);
     }
 });
 
 prev.addEventListener('click', () => {
     if(pageNum !== 1) {
         page_down();
-        submitHandle(name_input.value);
+        submitHandle(city_input.value, name_input.value);
         selection.classList.remove('disabled')
     }
 });
     
     
-    let submitHandle = (value) => {
-        fetch_brew(value);
+    let submitHandle = (city, name) => {
+        fetch_brew(city, name);
         document.querySelector("#information").innerHTML = '';
     
     };

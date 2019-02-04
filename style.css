@@ -28,7 +28,7 @@ h5 {
 }
 
 .row {
-    margin-bottom: 5px !important;
+    margin-bottom: 10px !important;
 }
 
 .show {
@@ -59,7 +59,7 @@ input {
 
 #information .card {
     flex-grow: 1;
-    min-width: 46%;
+    min-width: 98%;
     max-width: 100%;
     overflow: hidden;
     margin: 1%;
@@ -149,4 +149,11 @@ box-shadow: 0 1px 0 0 indigo !important;
     background-color: rgba(33,33,33,0.8);
     color:white;
   
+}
+
+/*Hotels*/
+
+.hotel-flex {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
