@@ -150,3 +150,10 @@ box-shadow: 0 1px 0 0 indigo !important;
     color:white;
   
 }
+
+/*Hotels*/
+
+.hotel-flex {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
