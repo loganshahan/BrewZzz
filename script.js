@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         if(breweries.length == 0) {
             selection.classList.add('disabled');
-            document.querySelector("#information").textContent = 'No bars found'
+            document.querySelector("#information").textContent = 'No breweries found'
         } else {
             selection.classList.remove('disabled');  
         }
