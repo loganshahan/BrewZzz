@@ -8,6 +8,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="state_converter.js"></script>
 
     <link rel="stylesheet" href="style.css">
     <title>Breweries</title>
@@ -104,7 +105,7 @@
             <div id="brewerie">
             <form id="search" name="contact-form" class="col s12">
 
-                <h5 class="mt-4">Select a State</h5>
+                <!-- <h5 class="mt-4">Select a State</h5>
                 <select id="states" class="browser-default custom-select">
                         <option class="selected">Select one</option>
                         <option value="AL">Alabama</option>
@@ -158,28 +159,30 @@
                         <option value="WV">West Virginia</option>
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
-                    </select>
+                    </select> -->
 
         <div class="row">
-            <div class="input-field col s6">
+
+            <div class="input-field col s12">
                 <input class="name mt-3" type="text" id="full_city" autocomplete="off">
-                <label for="full_city">Filter by city...</label>
+                <label for="full_city">Search...</label>
             </div>
+            <div class="col s6">
+                    <!-- pagination -->
+                    <div aria-label="Page navigation">
+                        <ul class="pagination">
+                        <li class="page-item prev ">
+                            <a href="#!" class="btn-floating indigo"><i class="material-icons ">chevron_left</i></a></li>
+                        <li class="page-item next">
+                            <a href="#!" class="btn-floating indigo selection"><i class="material-icons">chevron_right</i></a></li>
+                        </ul>
+                    </div> <!-- pagination -->
+                </div>
             <div class="input-field col s6">
                 <input class="name mt-3" type="text" id="full_name" autocomplete="off">
                 <label for="full_name">Filter by name...</label>
             </div>
         </div> 
-
-                <!-- pagination -->
-                <div aria-label="Page navigation">
-                    <ul class="pagination">
-                    <li class="page-item prev ">
-                        <a href="#!" class="btn-floating indigo"><i class="material-icons ">chevron_left</i></a></li>
-                    <li class="page-item next">
-                        <a href="#!" class="btn-floating indigo selection"><i class="material-icons">chevron_right</i></a></li>
-                    </ul>
-                </div> <!-- pagination -->
                     
             </form>
 
@@ -196,8 +199,6 @@
     </main> <!-- BREWERY .container -->
     <div class="before"></div>
 
-
-  
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
@@ -218,6 +219,8 @@
       db.settings({ timestampsInSnapshots: true });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzzAYvd-mkVchg31dffpl4nxzTljcDn7E&libraries=places"></script>
 
     <script src="auth.js"></script>
     <script src="google.js"></script>

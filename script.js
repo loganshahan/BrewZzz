@@ -12,13 +12,13 @@ window.addEventListener('DOMContentLoaded', () => {
     let prev = document.querySelector('.prev');
     let selection = document.querySelector('.selection');
     
-    const fetch_brew = async (city, name) => {
+    const fetch_brew = async (full_google_name,name) => {
     
-        let states = document.getElementById("states");
-        let state = `&by_state=${states.options[states.selectedIndex].text}`;
+        // let states = document.getElementById("states");
+        // let state = `&by_state=${states.options[states.selectedIndex].text}`;
         
     
-        let url = `https://api.openbrewerydb.org/breweries?by_city=${city}${state}&page=${pageNum}&per_page=1&sort=name&by_name=${name}`;        
+        let url = `https://api.openbrewerydb.org/breweries${full_google_name}&page=${pageNum}&per_page=1&sort=name&by_name=${name}`;        
         // console.log(url);
         
         let res = await fetch(url);
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 </div>
     
                 <div class="mt-2 card-action">
-                <p> <span><a class="btn indigo modal-trigger" href="${website}" data-target="website-${id}"> Visit Website </a>
+                <p> <span><a class="btn indigo modal-trigger" href="${website}" data-target="website-${id}"> Website </a>
                 </p>
                 </div>
     
@@ -125,7 +125,7 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     document.querySelector(`[data-target="bar-${id}"]`).addEventListener('click', () => {
-        foursquare(city,lon,lat, id);
+        foursquare(city,lon,lat,id);
 
     });
 
@@ -141,32 +141,41 @@ window.addEventListener('DOMContentLoaded', () => {
     city_input.addEventListener('keyup', () => {
 
         pageNum = 1;
-        submitHandle(city_input.value, name_input.value);
+        if(city_input.value == '') {
+            document.querySelector("#information").innerHTML = '';
+        }
 
     });
     name_input.addEventListener('keyup', () => {
 
         pageNum = 1;
-        submitHandle(city_input.value, name_input.value);
+        let location_info = document.getElementById("full_city").value.split(",");
+        let cityName = location_info[0].toLowerCase().trim();
+        let stateName = location_info[1].toLowerCase().trim();
+        stateName = abbrState(stateName, 'name').toLowerCase();
+        let full_google_name = `?by_city=${cityName}&by_state=${stateName}`;
+        submitHandle(full_google_name,name_input.value);
 
     });
     
     
-    let states = document.getElementById("states");
+    // let states = document.getElementById("states");
     
-    states.onchange = function() {
-        let single_state = states.options[states.selectedIndex].text;
+    // states.onchange = function() {
+    //     let single_state = states.options[states.selectedIndex].text;
     
-        pageNum = 1;
-        submitHandle(city_input.value, name_input.value);
-        fetch_weather(single_state);
-        selection.classList.remove('disabled');
-        city_input.value = '';
+    //     pageNum = 1;
+    //     submitHandle(city_input.value, name_input.value);
+    //     fetch_weather(single_state);
+    //     selection.classList.remove('disabled');
+    //     city_input.value = '';
 
-    };
+    // };
 
- // Pagination functionality
- let page_up = () => {
+
+    // Pagination functionality
+
+let page_up = () => {
     pageNum = pageNum + 1;
 };
 
@@ -180,24 +189,56 @@ next.addEventListener('click', () => {
         selection.classList.add('disabled');
     } else {
         page_up();
-        submitHandle(city_input.value, name_input.value);
+        let location_info = document.getElementById("full_city").value.split(",");
+        let cityName = location_info[0].toLowerCase().trim();
+        let stateName = location_info[1].toLowerCase().trim();
+        stateName = abbrState(stateName, 'name').toLowerCase();
+        let full_google_name = `?by_city=${cityName}&by_state=${stateName}`;
+        submitHandle(full_google_name,name_input.value);
     }
 });
 
 prev.addEventListener('click', () => {
     if(pageNum !== 1) {
         page_down();
-        submitHandle(city_input.value, name_input.value);
-        selection.classList.remove('disabled')
+        let location_info = document.getElementById("full_city").value.split(",");
+        let cityName = location_info[0].toLowerCase().trim();
+        let stateName = location_info[1].toLowerCase().trim();
+        stateName = abbrState(stateName, 'name').toLowerCase();
+        let full_google_name = `?by_city=${cityName}&by_state=${stateName}`;
+        submitHandle(full_google_name,name_input.value);
+        selection.classList.remove('disabled');
     }
 });
-    
-    
-    let submitHandle = (city, name) => {
-        fetch_brew(city, name);
+
+
+// google autocomplete api
+var options = {
+        types: ['(cities)'],
+        componentRestrictions: { country: 'us' }
+    };
+autocomplete = new google.maps.places.Autocomplete(city_input, options);
+
+let get_map_data = () => {
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    let location_info = document.getElementById("full_city").value.split(",");
+    let cityName = location_info[0].toLowerCase().trim();
+    let stateName = location_info[1].toLowerCase().trim();
+    stateName = abbrState(stateName, 'name').toLowerCase();
+    let full_google_name = `?by_city=${cityName}&by_state=${stateName}`;
+    submitHandle(full_google_name,name_input.value);
+    // console.log(full_google_name);
+
+});
+};
+
+    let submitHandle = (full_google_name,name) => {
+        fetch_brew(full_google_name, name);
         document.querySelector("#information").innerHTML = '';
     
     };
+    get_map_data();
+
     
       // setup materialize components
       let modals = document.querySelectorAll('.modal');
