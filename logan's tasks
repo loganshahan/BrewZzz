@@ -1,7 +1,0 @@
-//add button for find maps
-//use json latitude and longitude-create variable to search
-//create api key for google maps
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
-//api key: AIzaSyDn7dkJJ7QZJ3FZ7AhvoIjTvN9OceO8VuA
-
-//**registration form to reserve space in brewery

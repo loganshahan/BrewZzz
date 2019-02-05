@@ -161,11 +161,14 @@
                     </select>
 
         <div class="row">
-            <div class="input-field col s12">
-                <input class="name mt-3" type="text" id="full_name" autocomplete="off">
-                <label for="full_name">Filter by city...</label>
+            <div class="input-field col s6">
+                <input class="name mt-3" type="text" id="full_city" autocomplete="off">
+                <label for="full_city">Filter by city...</label>
             </div>
-
+            <div class="input-field col s6">
+                <input class="name mt-3" type="text" id="full_name" autocomplete="off">
+                <label for="full_name">Filter by name...</label>
+            </div>
         </div> 
 
                 <!-- pagination -->
@@ -184,7 +187,7 @@
             </div> <!--  .col -->
         </div> <!--  .row -->
 
-                <div class="row">
+                <div class="row center">
                     <div class="col s12">
                             <div id="information"></div>
                     </div>
@@ -217,6 +220,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script src="auth.js"></script>
+    <script src="foursquare.js"></script>
     <script src="script.js"></script>
     <script src="weather.js"></script>
 </body>
