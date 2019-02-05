@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
     };
     
     city_input.addEventListener('keyup', () => {
-
+        name_input.value = '';
         pageNum = 1;
         if(city_input.value == '') {
             document.querySelector("#information").innerHTML = '';
@@ -228,6 +228,7 @@ let get_map_data = () => {
     let full_google_name = `?by_city=${cityName}&by_state=${stateName}`;
     submitHandle(full_google_name,name_input.value);
     // console.log(full_google_name);
+    fetch_weather(stateName);
 
 });
 };
