@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let next = document.querySelector('.next');
     let prev = document.querySelector('.prev');
     let selection = document.querySelector('.selection');
+    let class_weather = document.querySelector('.weather');
     
     const fetch_brew = async (full_google_name,name) => {
     
@@ -95,7 +96,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         <!-- Modal Trigger -->
         <button class="modal-trigger indigo search" data-target="bar-${id}">
-            <i class="material-icons small indigo white-text"> gps_fixed </i>
+            <i class="material-icons small indigo white-text"> hotel </i>
         </button>
     
             <!-- Modal Structure -->
@@ -143,9 +144,16 @@ window.addEventListener('DOMContentLoaded', () => {
         pageNum = 1;
         if(city_input.value == '') {
             document.querySelector("#information").innerHTML = '';
+            name_input.setAttribute('disabled', '');
+            class_weather.innerHTML = '';
+            
+
+        } else {
+            name_input.removeAttribute('disabled');
         }
 
     });
+
     name_input.addEventListener('keyup', () => {
 
         pageNum = 1;
