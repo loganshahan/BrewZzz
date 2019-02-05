@@ -154,7 +154,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let stateName = location_info[1].toLowerCase().trim();
         stateName = abbrState(stateName, 'name').toLowerCase();
         let full_google_name = `?by_city=${cityName}&by_state=${stateName}`;
-        submitHandle(full_google_name,name_input.value);
+        submitHandle(full_google_name, name_input.value);
 
     });
     
