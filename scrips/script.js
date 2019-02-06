@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let prev = document.querySelector('.prev');
     let selection = document.querySelector('.selection');
     let class_weather = document.querySelector('.weather');
+
     
 const fetch_brew = async (full_google_name,name) => {
         
@@ -221,6 +222,7 @@ const submitHandle = (full_google_name,name) => {
       // setup materialize components
       let modals = document.querySelectorAll('.modal');
       M.Modal.init(modals);
+
         
     });
     
