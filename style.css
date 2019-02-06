@@ -1,5 +1,18 @@
 body {
-    background: #d3d3d3;
+
+}
+
+.hero {
+    /* height: 100vh;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: -1;
+    background-image: url(https://source.unsplash.com/category/wallpaper/1920x1080) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    object-fit: cover; */
 }
 
 a {
@@ -100,6 +113,10 @@ label {
 }
 .pagination li a {
     padding: 0 !important;
+}
+.pagination {
+    display: flex !important;
+    justify-content: space-evenly !important;
 }
 
 .input-field input[type=text] + label, .materialize-textarea:focus:not([readonly]) + label {

@@ -16,8 +16,8 @@ let foursquare = async (city,lat,lon,id) => {
 
       let venue_url = `https://api.foursquare.com/v2/venues/${hotel_id}?client_secret=THX2DWMAVSJSL2C44WNDSE0C3ME0DLLJFUNYAZ1XQRFFOM5D&client_id=2XR4OH2AHEX3HOW0PPBNBY0V42YYKI5SYK3IE2AVBQ5UDQQK&v=20180602&contact&url&rating`;
 
-      let fetch_photo = await fetch(venue_url);
-      let venue_json = await fetch_photo.json();
+      let fetch_hotel = await fetch(venue_url);
+      let venue_json = await fetch_hotel.json();
       let venues_obj = venue_json.response.venue;
        
       let hotel_url = venues_obj.url;
