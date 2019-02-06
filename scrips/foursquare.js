@@ -1,6 +1,6 @@
 let foursquare = async (city,lat,lon,id) => {
 
-    let hotels_url = `https://api.foursquare.com/v2/venues/search?near=${city.toLowerCase()}&lat=${lat}&lng=${lon}&radius=20000&distance=7000&query=hotels&v=20150214&m=foursquare&limit=6&llAcc=1000&client_secret=DU2HGOE2WZQV5TNO3DVPT312MUH0HCB2I3B32RQUERU5VHQT&client_id=5VLSKKUKVHEEOPY25XKDHSA045FLCMGKMHLLY3SRJ2TXV00W
+    let hotels_url = `https://api.foursquare.com/v2/venues/search?near=${city.toLowerCase()}&lat=${lat}&lng=${lon}&radius=20000&distance=7000&query=hotels&v=20150214&m=foursquare&limit=8&llAcc=1000&client_secret=THX2DWMAVSJSL2C44WNDSE0C3ME0DLLJFUNYAZ1XQRFFOM5D&client_id=2XR4OH2AHEX3HOW0PPBNBY0V42YYKI5SYK3IE2AVBQ5UDQQK
     `;
     // console.log(hotels_url)
   
@@ -8,13 +8,13 @@ let foursquare = async (city,lat,lon,id) => {
     let hotels = await res.json();
     let venues = hotels.response.venues;
     let hotel_container = document.getElementById(`hotel-${id}`);
-    
+
     for(let i in venues) {
       let hotels_json = venues[i];
       var hotel_name = hotels_json.name;
       let hotel_id = hotels_json.id;
 
-      let venue_url = `https://api.foursquare.com/v2/venues/${hotel_id}?client_secret=DU2HGOE2WZQV5TNO3DVPT312MUH0HCB2I3B32RQUERU5VHQT&client_id=5VLSKKUKVHEEOPY25XKDHSA045FLCMGKMHLLY3SRJ2TXV00W&v=20180602&contact&url&rating`;
+      let venue_url = `https://api.foursquare.com/v2/venues/${hotel_id}?client_secret=THX2DWMAVSJSL2C44WNDSE0C3ME0DLLJFUNYAZ1XQRFFOM5D&client_id=2XR4OH2AHEX3HOW0PPBNBY0V42YYKI5SYK3IE2AVBQ5UDQQK&v=20180602&contact&url&rating`;
 
       let fetch_photo = await fetch(venue_url);
       let venue_json = await fetch_photo.json();
@@ -28,13 +28,16 @@ let foursquare = async (city,lat,lon,id) => {
 
       console.log(venues_obj);
 
+
+  
+
 if(venues_obj.photos.count > 0) {
         let photo_prefix = venues_obj.bestPhoto.prefix;
         let photo_suffix = venues_obj.bestPhoto.suffix;
         let photo_width = venues_obj.bestPhoto.width;
         let photo_height = venues_obj.bestPhoto.height;
 
-        hotel_container.innerHTML += `
+     hotel_container.innerHTML += `
 
         <div class="container">
           <div class="row">
@@ -66,11 +69,11 @@ if(venues_obj.photos.count > 0) {
           </div>
         </div>
          
-        `
-
-      }      
+        `;
+};    
 
     }  
     /* <img src="${photo_prefix}300x300${photo_suffix}" /> */
     
 };
+
