@@ -14,6 +14,7 @@ auth.onAuthStateChanged(user => {
 
       console.log('user logged in ');
       parent.insertBefore(content, before);
+      content.style.display = 'block';
       logout_out.style.display = 'block';
       logged_in.style.display = 'none';
       sign_up.style.display = 'none';

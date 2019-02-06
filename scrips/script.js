@@ -1,8 +1,3 @@
-/*
-// api used: https://www.openbrewerydb.org
-*/
-
-
 window.addEventListener('DOMContentLoaded', () => {
 
     let city_input = document.querySelector('#full_city');
@@ -11,14 +6,11 @@ window.addEventListener('DOMContentLoaded', () => {
     let next = document.querySelector('.next');
     let prev = document.querySelector('.prev');
     let selection = document.querySelector('.selection');
+    let class_weather = document.querySelector('.weather');
     
-    const fetch_brew = async (city, name) => {
-    
-        let states = document.getElementById("states");
-        let state = `&by_state=${states.options[states.selectedIndex].text}`;
+const fetch_brew = async (full_google_name,name) => {
         
-    
-        let url = `https://api.openbrewerydb.org/breweries?by_city=${city}${state}&page=${pageNum}&per_page=1&sort=name&by_name=${name}`;        
+        let url = `https://api.openbrewerydb.org/breweries${full_google_name}&page=${pageNum}&per_page=1&sort=name&by_name=${name}`;        
         // console.log(url);
         
         let res = await fetch(url);
@@ -69,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 </div>
     
                 <div class="mt-2 card-action">
-                <p> <span><a class="btn indigo modal-trigger" href="${website}" data-target="website-${id}"> Visit Website </a>
+                <p> <span><a class="btn indigo modal-trigger" href="${website}" data-target="website-${id}"> Website </a>
                 </p>
                 </div>
     
@@ -88,14 +80,13 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
            `;
 
-
         let custom_modals = document.getElementById(`${id}`);
 
         custom_modals.innerHTML += `
         
         <!-- Modal Trigger -->
         <button class="modal-trigger indigo search" data-target="bar-${id}">
-            <i class="material-icons small indigo white-text"> gps_fixed </i>
+            <i class="material-icons small indigo white-text"> hotel </i>
         </button>
     
             <!-- Modal Structure -->
@@ -119,18 +110,17 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
         `;
         
-
     if(website === '') {
         document.getElementById(`website-${id}`).textContent = 'No Website found!';
     };
 
     document.querySelector(`[data-target="bar-${id}"]`).addEventListener('click', () => {
-        foursquare(city,lon,lat, id);
+
+        foursquare(city,lon,lat,id);
 
     });
 
     };
-
 
       // setup materialize components
       let modals = document.querySelectorAll('.modal');
@@ -139,34 +129,31 @@ window.addEventListener('DOMContentLoaded', () => {
     };
     
     city_input.addEventListener('keyup', () => {
-
+        name_input.value = '';
         pageNum = 1;
-        submitHandle(city_input.value, name_input.value);
+        if(city_input.value == '') {
+            document.querySelector("#information").innerHTML = '';
+            name_input.setAttribute('disabled', '');
+            class_weather.innerHTML = '';
+            
+
+        } else {
+            name_input.removeAttribute('disabled');
+        }
 
     });
+
     name_input.addEventListener('keyup', () => {
 
         pageNum = 1;
-        submitHandle(city_input.value, name_input.value);
+
+        get_location_data()
 
     });
-    
-    
-    let states = document.getElementById("states");
-    
-    states.onchange = function() {
-        let single_state = states.options[states.selectedIndex].text;
-    
-        pageNum = 1;
-        submitHandle(city_input.value, name_input.value);
-        fetch_weather(single_state);
-        selection.classList.remove('disabled');
-        city_input.value = '';
 
-    };
 
- // Pagination functionality
- let page_up = () => {
+// Pagination functionality
+let page_up = () => {
     pageNum = pageNum + 1;
 };
 
@@ -179,25 +166,57 @@ next.addEventListener('click', () => {
     if(document.querySelector("#information").childElementCount === 0 ) {
         selection.classList.add('disabled');
     } else {
+
         page_up();
-        submitHandle(city_input.value, name_input.value);
+
+        get_location_data()
+
     }
 });
 
 prev.addEventListener('click', () => {
     if(pageNum !== 1) {
         page_down();
-        submitHandle(city_input.value, name_input.value);
-        selection.classList.remove('disabled')
+
+        get_location_data()
+
+        selection.classList.remove('disabled');
     }
 });
-    
-    
-    let submitHandle = (city, name) => {
-        fetch_brew(city, name);
+
+// google autocomplete api
+let options = {
+        types: ['(cities)'],
+        componentRestrictions: { country: 'us' }
+};
+autocomplete = new google.maps.places.Autocomplete(city_input, options);
+
+const get_map_data = () => {
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+
+        get_location_data()
+
+});
+};
+
+const get_location_data = () => {
+    let location_info = document.getElementById("full_city").value.split(",");
+    let cityName = location_info[0].toLowerCase().trim();
+    let stateName = location_info[1].toLowerCase().trim();
+    stateName = abbrState(stateName, 'name').toLowerCase();
+    let full_google_name = `?by_city=${cityName}&by_state=${stateName}`;
+    submitHandle(full_google_name,name_input.value);
+    fetch_weather(stateName);
+    // console.log(full_google_name);
+};
+
+const submitHandle = (full_google_name,name) => {
+        fetch_brew(full_google_name, name);
         document.querySelector("#information").innerHTML = '';
     
-    };
+};
+    get_map_data();
+
     
       // setup materialize components
       let modals = document.querySelectorAll('.modal');
