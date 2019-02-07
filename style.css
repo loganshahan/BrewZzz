@@ -1,13 +1,40 @@
 body {
-    /* width: 100%;
-    top: 0;
-    z-index: -1;
-    background-image: url(https://source.unsplash.com/category/wallpaper/1920x1080) ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    object-fit: cover;  */
+    font-family: 'Amatic SC', cursive;
+    
+
 }
+
+.navbar {
+background-color: #C67707;
+
+
+}
+
+.navbar ul li a {
+    color:white !important;
+    font-size: 1.5em;
+}
+.fa-phone{
+    color: #C67707 !important;
+}
+
+.material-icons {
+    background-color: #C67707 !important;
+}
+
+.card button {
+    background-color: #C67707 !important;
+    border: 0 !important;
+}
+
+.page-item a {
+ background-color: #C67707;
+}
+
+.center{
+
+}
+
 
 .hero {
     /* height: 100vh;
@@ -21,11 +48,8 @@ body {
     background-position: center center;
     object-fit: cover; */
 }
-.hero:after {
-    height: 100vh;
-    width: 100%;
-    background-color: rgba(0,0,0,0.5);
-}
+
+
 
 a {
     text-decoration: none !important;
@@ -38,10 +62,15 @@ p {
 
 h1 {
     margin: 0 11px;
+    
 }
 
 h5 {
     padding: 0 5px !important;
+}
+
+h3 {
+    font-size: 4.5rem;
 }
 
 .hide {
@@ -96,6 +125,7 @@ input {
     bottom: 0;
     right: 0;
     margin: 15px;
+    /* background-color: #C67707; */
 }
 
 .search {
@@ -109,6 +139,8 @@ input {
 
 .btn {
     width: 50% !important;
+    background-color: #C67707 !important;
+
 }
 
 ul {
@@ -132,22 +164,22 @@ label {
 }
 
 .input-field input[type=text] + label, .materialize-textarea:focus:not([readonly]) + label {
-    color: indigo !important;
+    color: #C67707  !important;
 }
 .input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
-color: indigo !important;
+color:#C67707  !important;
 }
 .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
-border-bottom: 1px solid indigo !important;
-box-shadow: 0 1px 0 0 indigo !important;
+border-bottom: 1px solid#C67707  !important;
+box-shadow: 0 1px 0 0#C67707  !important;
 }
 .input-field input[type=email]:focus, .materialize-textarea:focus:not([readonly]) {
-border-bottom: 1px solid indigo !important;
-box-shadow: 0 1px 0 0 indigo !important;
+border-bottom: 1px solid#C67707  !important;
+box-shadow: 0 1px 0 0#C67707  !important;
 }
 .input-field input[type=password]:focus, .materialize-textarea:focus:not([readonly]) {
-border-bottom: 1px solid indigo !important;
-box-shadow: 0 1px 0 0 indigo !important;
+border-bottom: 1px solid#C67707  !important;
+box-shadow: 0 1px 0 0#C67707  !important;
 }
 /*WEATHER*/
 
@@ -177,6 +209,7 @@ box-shadow: 0 1px 0 0 indigo !important;
     padding: 15px;
     background-color: rgba(33,33,33,0.8);
     color:white;
+  
 }
 
 /*Hotels*/
@@ -184,4 +217,12 @@ box-shadow: 0 1px 0 0 indigo !important;
 .hotel-flex {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+@media all and (max-width: 600px) {
+    .hotel-flex {
+        display: block; 
+        
+    }
+
 }
