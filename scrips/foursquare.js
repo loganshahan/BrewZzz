@@ -28,9 +28,6 @@ let foursquare = async (city,lat,lon,id) => {
 
       console.log(venues_obj);
 
-
-  
-
 if(venues_obj.photos.count > 0) {
         let photo_prefix = venues_obj.bestPhoto.prefix;
         let photo_suffix = venues_obj.bestPhoto.suffix;
@@ -60,7 +57,7 @@ if(venues_obj.photos.count > 0) {
               <i class="fa fa-phone fa-2x"></i>
               </a>
               <br/><br/><br/>
-              <p>${description}</p>
+              <p class="hotel_description" >${description}</p>
               
             </div>
           </div>
@@ -70,6 +67,10 @@ if(venues_obj.photos.count > 0) {
         </div>
          
         `;
+        
+    if(description === undefined) {
+      document.querySelector('.hotel_description').textContent = ''
+    }
 };    
 
     }  
