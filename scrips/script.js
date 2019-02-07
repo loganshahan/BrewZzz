@@ -45,7 +45,7 @@ const fetch_brew = async (full_google_name,name) => {
            let lat = parseFloat(json.latitude);
            let lon = parseFloat(json.longitude);
 
-           console.log(lat, lon)
+        //    console.log(lat, lon)
     
            info.innerHTML += `
         <div class="card hoverable z-depth-1">

@@ -1,13 +1,36 @@
 body {
     font-family: 'Amatic SC', cursive;
-    
+    background-image: url(https://source.unsplash.com/category/wallpaper/1920x1080) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+}
+.hero {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	background: rgba(255,255,255, 0.9);
+	width: 100% !important;
+	height: 100vh !important;
+}
+.login_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
 
+.login_page h3 {
+    border-bottom: 1px solid #C67707;
+    
 }
 
 .navbar {
 background-color: #C67707;
-
-
 }
 
 .navbar ul li a {
@@ -31,26 +54,6 @@ background-color: #C67707;
  background-color: #C67707;
 }
 
-.center{
-
-}
-
-
-.hero {
-    /* height: 100vh;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    z-index: -1;
-    background-image: url(https://source.unsplash.com/category/wallpaper/1920x1080) ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    object-fit: cover; */
-}
-
-
-
 a {
     text-decoration: none !important;
 }
@@ -62,7 +65,6 @@ p {
 
 h1 {
     margin: 0 11px;
-    
 }
 
 h5 {
@@ -70,7 +72,7 @@ h5 {
 }
 
 h3 {
-    font-size: 4.5rem;
+    font-size: 4.5em;
 }
 
 .hide {
@@ -78,7 +80,6 @@ h3 {
     height: 0;
     transition: opacity 0.2s ease-in-out 0.1s;
     overflow: hidden;
-
 }
 
 .row {
@@ -101,7 +102,7 @@ h3 {
 }
 
 input {
-    caret-color: indigo !important;
+    caret-color: #C67707 !important;
 }
 
 #information {
@@ -153,7 +154,7 @@ ul {
 }
 
 label {
-    color: indigo !important;
+    color: #C67707 !important;
 }
 .pagination li a {
     padding: 0 !important;
@@ -170,16 +171,16 @@ label {
 color:#C67707  !important;
 }
 .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
-border-bottom: 1px solid#C67707  !important;
-box-shadow: 0 1px 0 0#C67707  !important;
+border-bottom: 1px solid #C67707  !important;
+box-shadow: 0 1px 0 0 #C67707  !important;
 }
 .input-field input[type=email]:focus, .materialize-textarea:focus:not([readonly]) {
-border-bottom: 1px solid#C67707  !important;
-box-shadow: 0 1px 0 0#C67707  !important;
+border-bottom: 1px solid #C67707  !important;
+box-shadow: 0 1px 0 0 #C67707  !important;
 }
 .input-field input[type=password]:focus, .materialize-textarea:focus:not([readonly]) {
-border-bottom: 1px solid#C67707  !important;
-box-shadow: 0 1px 0 0#C67707  !important;
+border-bottom: 1px solid #C67707  !important;
+box-shadow: 0 1px 0 0 #C67707  !important;
 }
 /*WEATHER*/
 

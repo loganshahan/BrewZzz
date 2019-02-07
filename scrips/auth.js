@@ -44,8 +44,11 @@ auth.onAuthStateChanged(user => {
 
       // render when user is logged out
         let logout_html = `
-        <h4 class="center">Please sign up or log in</h4>
+        <div class="login_page">
+          <h3 class="center">Please sign up or log in</h3>
+        </div>
         `;
+
         before.innerHTML = logout_html;
 
     }
