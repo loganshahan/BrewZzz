@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-    <script src="scrips/state_converter.js"></script>
+    <script src="scripts/state_converter.js"></script>
+    <script src="scripts/keys.js"></script>
 
     <link rel="stylesheet" href="style.css">
     <title>Breweries</title>
@@ -89,6 +90,7 @@
         </div>
     </div> <!-- ACCOUNT MODAL -->
 
+    <!-- overlay -->
     <div class="hero"></div>
 
     <main class="container text-center center-align"  id="content" style="display: none;">
@@ -101,7 +103,7 @@
 
         <div class="row">
             <div class="col s12">
-                <h3 class="center">BrewZzzz</h3>
+                <h1 class="center">BrewZzzz</h1>
 
             <div id="brewerie">
             <form id="search" name="contact-form" class="col s12">
@@ -109,7 +111,8 @@
         <div class="row">
 
             <div class="input-field col s12">
-                <input  class="name mt-3" type="text" id="full_city" autocomplete="off">
+                <input  class="name mt-3" type="text" id="full_city" autocomplete="off" placeholder="">
+                <label for="full_city">search your location</label>
             </div>
             <div class="col s6">
                     <!-- pagination -->
@@ -167,9 +170,9 @@
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzzAYvd-mkVchg31dffpl4nxzTljcDn7E&libraries=places"></script>
 
-    <script src="scrips/auth.js"></script>
-    <script src="scrips/foursquare.js"></script>
-    <script src="scrips/script.js"></script>
-    <script src="scrips/weather.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/foursquare.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/weather.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 body {
     font-family: 'Amatic SC', cursive;
-    background-image: url(https://source.unsplash.com/category/wallpaper/1920x1080) ;
+    background-image: url(https://source.unsplash.com/category/wallpaper/1920x1080);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -24,9 +24,8 @@ body {
     height: 500px;
 }
 
-.login_page h3 {
-    border-bottom: 1px solid #C67707;
-    
+.login_page h1 {
+    border-bottom: 1px solid #C67707; 
 }
 
 .navbar {
@@ -65,6 +64,8 @@ p {
 
 h1 {
     margin: 0 11px;
+    font-size: 90px;
+
 }
 
 h5 {
@@ -72,7 +73,7 @@ h5 {
 }
 
 h3 {
-    font-size: 4.5em;
+    font-size: 2em;
 }
 
 .hide {
@@ -165,7 +166,8 @@ label {
 }
 
 .input-field input[type=text] + label, .materialize-textarea:focus:not([readonly]) + label {
-    color: #C67707  !important;
+    color: #C67707;
+    font-size: 1.5rem;
 }
 .input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
 color:#C67707  !important;
@@ -218,6 +220,11 @@ box-shadow: 0 1px 0 0 #C67707  !important;
 .hotel-flex {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.activator {
+    max-height: 300px;
+    object-fit: cover;
 }
 
 @media all and (max-width: 600px) {

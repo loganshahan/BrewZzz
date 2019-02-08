@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let selection = document.querySelector('.selection');
     let class_weather = document.querySelector('.weather');
 
-    
+// fetch breweries
 const fetch_brew = async (full_google_name,name) => {
         
         let url = `https://api.openbrewerydb.org/breweries${full_google_name}&page=${pageNum}&per_page=1&sort=name&by_name=${name}`;        
@@ -17,7 +17,6 @@ const fetch_brew = async (full_google_name,name) => {
         let res = await fetch(url);
         let breweries = await res.json();
         
-        
         if(breweries.length == 0) {
             selection.classList.add('disabled');
             document.querySelector("#information").textContent = 'No breweries found!'
@@ -25,7 +24,6 @@ const fetch_brew = async (full_google_name,name) => {
             selection.classList.remove('disabled');  
         }
         
-    
     for(let i in breweries) {
         let json = breweries[i];
     
@@ -38,12 +36,12 @@ const fetch_brew = async (full_google_name,name) => {
            let street = json.street;
            let city = json.city;
            let state = json.state;
-           let postal = json.postal_code;
+           let postal = parseFloat(json.postal_code);
            let phone = json.phone;
            let website = json.website_url;
            let address = `${street}, ${city}, ${state}, ${postal}`;
            let lat = parseFloat(json.latitude);
-           let lon = parseFloat(json.longitude);
+           let lon = parseFloat(json.longitude);    
 
         //    console.log(lat, lon)
     
@@ -112,7 +110,11 @@ const fetch_brew = async (full_google_name,name) => {
         `;
         
     if(website === '') {
-        document.getElementById(`website-${id}`).textContent = 'No Website found!';
+        document.getElementById(`website-${id}`).innerHTML = `
+        <div class="login_page">
+            <h1> No Website found! </h1>
+        </div>
+        `;
     };
 
     document.querySelector(`[data-target="bar-${id}"]`).addEventListener('click', () => {
@@ -121,9 +123,11 @@ const fetch_brew = async (full_google_name,name) => {
 
     });
 
+    fetch_weather(postal);
+
     };
 
-      // setup materialize components
+      // setup materialize modals
       let modals = document.querySelectorAll('.modal');
       M.Modal.init(modals);
 
@@ -133,11 +137,11 @@ const fetch_brew = async (full_google_name,name) => {
         name_input.value = '';
         pageNum = 1;
         if(city_input.value == '') {
+
             document.querySelector("#information").innerHTML = '';
             name_input.setAttribute('disabled', '');
             class_weather.innerHTML = '';
             
-
         } else {
             name_input.removeAttribute('disabled');
         }
@@ -148,10 +152,9 @@ const fetch_brew = async (full_google_name,name) => {
 
         pageNum = 1;
 
-        get_location_data()
+        get_location_data();
 
     });
-
 
 // Pagination functionality
 let page_up = () => {
@@ -162,7 +165,6 @@ let page_down = () => {
     pageNum = pageNum - 1;
 };
 
-
 next.addEventListener('click', () => {
     if(document.querySelector("#information").childElementCount === 0 ) {
         selection.classList.add('disabled');
@@ -170,7 +172,7 @@ next.addEventListener('click', () => {
 
         page_up();
 
-        get_location_data()
+        get_location_data();
 
     }
 });
@@ -179,7 +181,7 @@ prev.addEventListener('click', () => {
     if(pageNum !== 1) {
         page_down();
 
-        get_location_data()
+        get_location_data();
 
         selection.classList.remove('disabled');
     }
@@ -193,9 +195,9 @@ let options = {
 autocomplete = new google.maps.places.Autocomplete(city_input, options);
 
 const get_map_data = () => {
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    google.maps.event.addListener(autocomplete, 'place_changed', () => {
 
-        get_location_data()
+        get_location_data();
 
 });
 };
@@ -207,22 +209,17 @@ const get_location_data = () => {
     stateName = abbrState(stateName, 'name').toLowerCase();
     let full_google_name = `?by_city=${cityName}&by_state=${stateName}`;
     submitHandle(full_google_name,name_input.value);
-    fetch_weather(stateName);
     // console.log(full_google_name);
 };
 
 const submitHandle = (full_google_name,name) => {
         fetch_brew(full_google_name, name);
         document.querySelector("#information").innerHTML = '';
-    
 };
     get_map_data();
 
-    
-      // setup materialize components
+      // setup materialize modals
       let modals = document.querySelectorAll('.modal');
       M.Modal.init(modals);
 
-        
-    });
-    
+});
