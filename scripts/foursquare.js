@@ -2,7 +2,7 @@
 
 let foursquare = async (city,lat,lon,id) => {
 
-    let hotels_url = `https://api.foursquare.com/v2/venues/search?near=${city.toLowerCase()}&lat=${lat}&lng=${lon}&radius=20000&distance=15000&query=hotels&v=20150214&m=foursquare&limit=6&llAcc=5000&client_secret=${keys.client_secret}&client_id=${keys.client_id}
+    let hotels_url = `https://api.foursquare.com/v2/venues/search?near=${city.toLowerCase()}&lat=${lat}&lng=${lon}&radius=20000&distance=15000&query=hotels&v=20150214&m=foursquare&limit=6&llAcc=5000&client_secret=ZEGNGR3DCMUU4JMCXAXYBJEMTUDFORCGZMUCBG2FBF25QH0R&client_id=V2I5EWQWMB3UKZEESIWIF1ZFZRLIRJ5DFYKP5BBMZRIYDL5U
     `;
     // console.log(hotels_url)
   
@@ -16,7 +16,7 @@ for(let i in venues) {
       var hotel_name = hotels_json.name;
       let hotel_id = hotels_json.id;
 
-      let venue_url = `https://api.foursquare.com/v2/venues/${hotel_id}?client_secret=${keys.client_secret}&client_id=${keys.client_id}&v=20180602&contact&url&rating`;
+      let venue_url = `https://api.foursquare.com/v2/venues/${hotel_id}?client_secret=ZEGNGR3DCMUU4JMCXAXYBJEMTUDFORCGZMUCBG2FBF25QH0R&client_id=V2I5EWQWMB3UKZEESIWIF1ZFZRLIRJ5DFYKP5BBMZRIYDL5U&v=20180602&contact&url&rating`;
 
       let fetch_hotel = await fetch(venue_url);
       let venue_json = await fetch_hotel.json();
