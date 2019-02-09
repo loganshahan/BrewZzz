@@ -41,7 +41,11 @@ const fetch_brew = async (full_google_name,name) => {
            let website = json.website_url;
            let address = `${street}, ${city}, ${state}, ${postal}`;
            let lat = parseFloat(json.latitude);
-           let lon = parseFloat(json.longitude);    
+           let lon = parseFloat(json.longitude);  
+           
+        if(website.match('^http://')){
+            website = website.replace("http://","https://")
+        }
 
         //    console.log(lat, lon)
     
