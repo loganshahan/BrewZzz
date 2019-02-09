@@ -7,7 +7,6 @@ let account = document.querySelector('.account');
 let sign_up = document.querySelector('.sign-up');
 const accountDetails = document.querySelector('.account-details');
 
-
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if(user) {
@@ -30,7 +29,6 @@ auth.onAuthStateChanged(user => {
 
       });
 
-
     } else {
 
       console.log('user logged out');
@@ -41,16 +39,17 @@ auth.onAuthStateChanged(user => {
       account.style.display = 'none';
       accountDetails.innerHTML = '';
 
-
       // render when user is logged out
         let logout_html = `
-        <h4 class="center">Please sign up or log in</h4>
+        <div class="login_page">
+          <h1 class="center">Please sign up or log in</h1>
+        </div>
         `;
+
         before.innerHTML = logout_html;
 
     }
   });
-
 
 // SIGNUP
 const signupForm = document.querySelector('#signup-form');
@@ -77,7 +76,6 @@ signupForm.addEventListener('submit', (e) => {
     signupForm.querySelector('.error').innerHTML = err.message;
   });
 });
-
 
 // LOGOUT
 const logout = document.querySelector('#logout');

@@ -1,6 +1,8 @@
+// FourSquare api fetch for hotels
+
 let foursquare = async (city,lat,lon,id) => {
 
-    let hotels_url = `https://api.foursquare.com/v2/venues/search?near=${city.toLowerCase()}&lat=${lat}&lng=${lon}&radius=20000&distance=7000&query=hotels&v=20150214&m=foursquare&limit=8&llAcc=1000&client_secret=THX2DWMAVSJSL2C44WNDSE0C3ME0DLLJFUNYAZ1XQRFFOM5D&client_id=2XR4OH2AHEX3HOW0PPBNBY0V42YYKI5SYK3IE2AVBQ5UDQQK
+    let hotels_url = `https://api.foursquare.com/v2/venues/search?near=${city.toLowerCase()}&lat=${lat}&lng=${lon}&radius=20000&distance=15000&query=hotels&v=20150214&m=foursquare&limit=6&llAcc=5000&client_secret=ZEGNGR3DCMUU4JMCXAXYBJEMTUDFORCGZMUCBG2FBF25QH0R&client_id=V2I5EWQWMB3UKZEESIWIF1ZFZRLIRJ5DFYKP5BBMZRIYDL5U
     `;
     // console.log(hotels_url)
   
@@ -9,12 +11,12 @@ let foursquare = async (city,lat,lon,id) => {
     let venues = hotels.response.venues;
     let hotel_container = document.getElementById(`hotel-${id}`);
 
-    for(let i in venues) {
+for(let i in venues) {
       let hotels_json = venues[i];
       var hotel_name = hotels_json.name;
       let hotel_id = hotels_json.id;
 
-      let venue_url = `https://api.foursquare.com/v2/venues/${hotel_id}?client_secret=THX2DWMAVSJSL2C44WNDSE0C3ME0DLLJFUNYAZ1XQRFFOM5D&client_id=2XR4OH2AHEX3HOW0PPBNBY0V42YYKI5SYK3IE2AVBQ5UDQQK&v=20180602&contact&url&rating`;
+      let venue_url = `https://api.foursquare.com/v2/venues/${hotel_id}?client_secret=ZEGNGR3DCMUU4JMCXAXYBJEMTUDFORCGZMUCBG2FBF25QH0R&client_id=V2I5EWQWMB3UKZEESIWIF1ZFZRLIRJ5DFYKP5BBMZRIYDL5U&v=20180602&contact&url&rating`;
 
       let fetch_hotel = await fetch(venue_url);
       let venue_json = await fetch_hotel.json();
@@ -67,14 +69,16 @@ if(venues_obj.photos.count > 0) {
         </div>
          
         `;
-        
-    if(description === undefined) {
-      document.querySelector('.hotel_description').textContent = ''
-    }
-};    
 
-    }  
-    /* <img src="${photo_prefix}300x300${photo_suffix}" /> */
+      document.querySelectorAll('.hotel_description').forEach(each_desc => {
+          if(each_desc.textContent === 'undefined') {
+            each_desc.innerHTML = ` ${hotel_name} `
+            }
+      });
+           
+};   
+
+};
     
 };
 

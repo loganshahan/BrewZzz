@@ -2,8 +2,8 @@
 
 let APIKey = "166a433c57516f51dfab1f7edaed8413";
 let weather_data = document.querySelector('.weather');
-const fetch_weather = async (state) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${state}&units=imperial&appid=${APIKey}`;
+const fetch_weather = async (postal) => {
+    let url = `https://api.openweathermap.org/data/2.5/weather?zip=${postal},us&units=imperial&appid=${APIKey}`;
     let res = await fetch(url);
     let json = await res.json();
     let iconCode = json.weather[0].icon;
