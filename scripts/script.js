@@ -28,7 +28,10 @@ const fetch_brew = async (full_google_name,name) => {
         let json = breweries[i];
     
             // console.log(json)
-    
+        if(json.website_url.match('^http://')){
+            json.website_url = json.website_url.replace("http://","https://")
+        };
+
            let info =  document.querySelector("#information");
            let id = json.id;
            let name = json.name;
@@ -42,12 +45,8 @@ const fetch_brew = async (full_google_name,name) => {
            let address = `${street}, ${city}, ${state}, ${postal}`;
            let lat = parseFloat(json.latitude);
            let lon = parseFloat(json.longitude);  
-           
-        if(website.match('^http://')){
-            website = website.replace("http://","https://")
-        }
 
-        //    console.log(lat, lon)
+        //    console.log(website)
     
            info.innerHTML += `
         <div class="card hoverable z-depth-1">

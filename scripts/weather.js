@@ -12,8 +12,8 @@ const fetch_weather = async (postal) => {
 
     let weather_html = `
       <div style="text-align:center;"> 
-          <h4 class="left">${json.weather[0].main} <img src="http://openweathermap.org/img/w/${iconCode}.png" /> </h4>
-          <h5 style=" line-height: 3.5;" class="right">${temp} F° </h5>
+          <h5 class="left">${json.weather[0].main} <img src="http://openweathermap.org/img/w/${iconCode}.png" /> </h5>
+          <h5 style=" line-height: 2.5;" class="right">${temp} F° </h5>
       </div>
     `;
 
