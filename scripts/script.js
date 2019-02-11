@@ -7,9 +7,10 @@ window.addEventListener('DOMContentLoaded', () => {
     let prev = document.querySelector('.prev');
     let selection = document.querySelector('.selection');
     let class_weather = document.querySelector('.weather');
+    let info =  document.querySelector("#information");
 
 // fetch breweries
-const fetch_brew = async (full_google_name,name) => {
+const fetch_brew = async (full_google_name, name) => {
         
         let url = `https://api.openbrewerydb.org/breweries${full_google_name}&page=${pageNum}&per_page=1&sort=name&by_name=${name}`;        
         // console.log(url);
@@ -19,9 +20,11 @@ const fetch_brew = async (full_google_name,name) => {
         
         if(breweries.length == 0) {
             selection.classList.add('disabled');
-            document.querySelector("#information").textContent = 'No breweries found!'
+            info.textContent = 'No breweries found!'
+            info.style.fontSize = '1.8em';
         } else {
             selection.classList.remove('disabled');  
+            info.style.fontSize = '0.9em';
         }
         
     for(let i in breweries) {
@@ -122,7 +125,7 @@ const fetch_brew = async (full_google_name,name) => {
 
     document.querySelector(`[data-target="bar-${id}"]`).addEventListener('click', () => {
 
-        foursquare(city,lon,lat,id);
+        foursquare(city, lon, lat, id);
 
     });
 
