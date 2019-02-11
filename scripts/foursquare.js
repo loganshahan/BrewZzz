@@ -28,7 +28,7 @@ for(let i in venues) {
       let address_city = venues_obj.location.formattedAddress[1];
       let description = venues_obj.description;
 
-      console.log(venues_obj);
+      // console.log(venues_obj);
 
 if(venues_obj.photos.count > 0) {
         let photo_prefix = venues_obj.bestPhoto.prefix;
@@ -42,23 +42,23 @@ if(venues_obj.photos.count > 0) {
           <div class="row">
             <div class="col s12">
             
-            <div class="card">
+            <div class="card hotel_card">
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="${photo_prefix}${photo_width}x${photo_height}${photo_suffix}">
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4"> ${hotel_name} <i class="material-icons right">more_vert</i></span>
-              <p><a href="${hotel_url}" target="_blank">Hotel Website Link</a></p>
+              <p><a href="${hotel_url}" target="_blank">Hotel Website</a></p>
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4"> ${hotel_name} <i class="material-icons right">close</i></span>
-              <br/><br/><br/>
+              
               <a href="https://www.google.ca/maps/place/${address_street},+${address_city}/" target="_blank" >Hotel Address</a>
-              <br/><br/><br/>
+              
               <a href="tel://+1${phone_number}">
-              <i class="fa fa-phone fa-2x"></i>
+                <i class="fa fa-phone fa-2x"></i>
               </a>
-              <br/><br/><br/>
+              
               <p class="hotel_description" >${description}</p>
               
             </div>
@@ -72,7 +72,7 @@ if(venues_obj.photos.count > 0) {
 
       document.querySelectorAll('.hotel_description').forEach(each_desc => {
           if(each_desc.textContent === 'undefined') {
-            each_desc.innerHTML = ` ${hotel_name} `
+            each_desc.innerHTML = ` ${hotel_name} `;
             }
       });
            
